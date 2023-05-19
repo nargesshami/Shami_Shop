@@ -1,7 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using Shami_Shop.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+#region b Context
+
+builder.Services.AddDbContext<ShamiShopContext>(optins =>
+{
+    optins.UseSqlServer("Data Source=.;Initial Catalog= ShamiShop_Db;Integrated Security=true;TrustServerCertificate=True");
+});
+
+#endregion
+
 
 var app = builder.Build();
 
