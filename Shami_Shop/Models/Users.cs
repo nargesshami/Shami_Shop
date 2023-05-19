@@ -13,7 +13,7 @@ namespace Shami_Shop.Models
         public string MobilePhone { get; set; }
         [Required]
         [MaxLength(5)]
-        public Random Password { get; set; }
+        public string Password { get; set; }
         public bool IsAdmin { get; set; }
 
     }

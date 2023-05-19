@@ -7,7 +7,6 @@
         public string Description { get; set; }
         public int ItemId { get; set; }
         public Item Item { get; set; }
-        public IFormFile picture { get; set; }
 
     }
 }
