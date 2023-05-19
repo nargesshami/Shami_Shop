@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Shami_Shop.Controllers;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shami_Shop.Models
 {
+
     public class Users
     {
         [Key]
@@ -9,6 +11,9 @@ namespace Shami_Shop.Models
         [Required]
         [MaxLength(11)]
         public string MobilePhone { get; set; }
+        [Required]
+        [MaxLength(5)]
+        public Random Password { get; set; }
         public bool IsAdmin { get; set; }
 
     }
