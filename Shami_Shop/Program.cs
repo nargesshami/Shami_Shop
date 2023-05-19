@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Shami_Shop.Data;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,26 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.UseAuthentication();
+app.Use(async (context, next) =>
+{
+    // Do work that doesn't write to the Response.
+    if (context.Request.Path.StartsWithSegments("/Admin"))
+    {
+        if (!context.User.Identity.IsAuthenticated)
+        {
+            context.Response.Redirect("/Account/Login");
+        }
+        else if (!bool.Parse(context.User.FindFirstValue("IsAdmin")))
+        {
+            context.Response.Redirect("/Account/Login");
+        }
+    }
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
 
 app.MapControllerRoute(
     name: "default",

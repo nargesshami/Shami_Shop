@@ -1,4 +1,5 @@
-﻿using Shami_Shop.Controllers;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Shami_Shop.Controllers;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shami_Shop.Models

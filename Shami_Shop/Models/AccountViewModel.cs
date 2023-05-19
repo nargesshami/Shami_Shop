@@ -8,11 +8,11 @@ namespace Shami_Shop.Models
     {
 
         [MaxLength(300)]
-        [EmailAddress]
+        [Phone]
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]
-        [Remote("VerifyEmail", "Account")]
-        public string Email { get; set; }
+        [Remote("VerifyMobilePhone", "Account")]
+        public string MobilePhone { get; set; }
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]
         [MaxLength(50)]
         [DataType(DataType.Password)]
@@ -31,10 +31,10 @@ namespace Shami_Shop.Models
     public class LoginViewModel
     {
         [MaxLength(300)]
-        [EmailAddress]
+        [Phone]
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]
-        public string Email { get; set; }
+        public string MobilePhone { get; set; }
 
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]
         [MaxLength(50)]

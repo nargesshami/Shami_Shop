@@ -16,9 +16,11 @@ namespace Shami_Shop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Users> Users { get; set; }
+        Random r=new Random();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            int num = r.Next(100000);
             modelBuilder.Entity<Item>(i =>
             {
                 i.Property(w => w.Price).HasColumnType("Money");
@@ -37,6 +39,13 @@ namespace Shami_Shop.Data
                 Name = "محصول شماره 1",
                 Description = "این محصول تستی است"
             });
+            modelBuilder.Entity<Users>().HasData(new Users()
+            {
+                UserId = 1,
+                MobilePhone = "09372246289",
+                Password = num.ToString(),
+                IsAdmin = true
+            }) ;
         }
     }
 }
