@@ -1,12 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Shami_Shop.Data;
+using Shami_Shop.Data.Repositories;
+using Shami_Shop.security.phoneoTotp.Providers;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IuserRepositories, UserRepository>();
+builder.Services.AddTransient<IPhoneTotpProvider, phonetotpprovider>();
+builder.Services.Configure<phonetotpoptions>(options =>
+{
+    options.stepinsecon = 60;
+});
 
 #region b Context
 
@@ -37,23 +44,23 @@ app.UseAuthorization();
 
 
 app.UseAuthentication();
-app.Use(async (context, next) =>
-{
-    // Do work that doesn't write to the Response.
-    if (context.Request.Path.StartsWithSegments("/Admin"))
-    {
-        if (!context.User.Identity.IsAuthenticated)
-        {
-            context.Response.Redirect("/Account/Login");
-        }
-        else if (!bool.Parse(context.User.FindFirstValue("IsAdmin")))
-        {
-            context.Response.Redirect("/Account/Login");
-        }
-    }
-    await next.Invoke();
-    // Do logging or other work that doesn't write to the Response.
-});
+//app.Use(async (context, next) =>
+//{
+//    // Do work that doesn't write to the Response.
+//    if (context.Request.Path.StartsWithSegments("/Admin"))
+//    {
+//        if (!context.User.Identity.IsAuthenticated)
+//        {
+//            context.Response.Redirect("/Account/Login");
+//        }
+//        else if (!bool.Parse(context.User.FindFirstValue("IsAdmin")))
+//        {
+//            context.Response.Redirect("/Account/Login");
+//        }
+//    }
+//    await next.Invoke();
+//    // Do logging or other work that doesn't write to the Response.
+//});
 
 app.MapControllerRoute(
     name: "default",

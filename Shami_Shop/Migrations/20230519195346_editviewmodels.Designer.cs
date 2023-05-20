@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shami_Shop.Data;
 
@@ -10,9 +11,11 @@ using Shami_Shop.Data;
 namespace Shami_Shop.Migrations
 {
     [DbContext(typeof(ShamiShopContext))]
-    partial class ShamiShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230519195346_editviewmodels")]
+    partial class editviewmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +118,7 @@ namespace Shami_Shop.Migrations
                             UserId = 1,
                             IsAdmin = true,
                             MobilePhone = "09372246289",
-                            Password = "14492"
+                            Password = "66531"
                         });
                 });
 

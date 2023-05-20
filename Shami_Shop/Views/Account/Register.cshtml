@@ -7,9 +7,13 @@
 <h1>ثبت نام</h1>
 
 <hr />
+       <div class="alert alert-info" role="alert">
+          <label asp-for="randomnumber" class="control-label"></label>
+       </div>
+<hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Register">
+        <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MobilePhone" class="control-label"></label>
@@ -20,11 +24,6 @@
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RePassword" class="control-label"></label>
-                <input asp-for="RePassword" class="form-control" />
-                <span asp-validation-for="RePassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="ثبت نام" class="btn btn-success" />
